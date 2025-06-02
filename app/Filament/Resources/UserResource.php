@@ -110,9 +110,6 @@ class UserResource extends Resource
                         Forms\Components\Toggle::make('is_active')
                             ->required(),
                         Forms\Components\DateTimePicker::make('email_verified_at'),
-                        Forms\Components\TextInput::make('password')
-                            ->password()
-                            ->maxLength(255),
                     ])
                     ->columns(3)->columnSpan(4),
                 Section::make('Bank Details')
