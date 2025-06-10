@@ -34,45 +34,27 @@ class UserResource extends Resource
                 Section::make('Personal Details')
                     ->icon('heroicon-o-user')
                     ->schema([
-                        Forms\Components\TextInput::make('contractor_id_number')
-                            ->required()
-                            ->maxLength(255),
                         Forms\Components\TextInput::make('email')
-                            ->label('Company Email')
+                            ->label('Email')
                             ->email()
-                            ->required()
-                            ->maxLength(255),
+                            ->rules(['required'])
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true)
+                            ->live(true),
                         Forms\Components\TextInput::make('first_name')
-                            ->required()
+                        ->rules(['required'])
                             ->maxLength(255),
                         Forms\Components\TextInput::make('last_name')
-                            ->required()
+                            ->rules(['required'])
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('personal_email')
-                            ->email()
-                            ->maxLength(255),
-                        Forms\Components\Select::make('gender')
-                            ->options([
-                                'MALE' => 'Male',
-                                'FEMALE' => 'Female'
-                            ])
-                            ->required(),
-                        Forms\Components\DatePicker::make('birth_date'),
-                        Forms\Components\TextInput::make('contact_number')
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('citizenship')
-                            ->maxLength(255),
-                        Forms\Components\Select::make('marital_status')
-                            ->options([
-                                'MARRIED' => 'Married',
-                                'SINGLE' => 'Single',
-                                'WIDOWED' => 'Widowed',
-                                'SEPARATED' => 'Separated'
-                            ]),
-                        Forms\Components\TextInput::make('tin_number')
-                            ->maxLength(255),
-                        Forms\Components\Textarea::make('current_home_address')
-                            ->columnSpanFull(),
+                        Forms\Components\TextInput::make('password')
+                            ->same('passwordConfirmation')
+                            ->rules(['required'])
+                            ->password(),
+                        Forms\Components\TextInput::make('passwordConfirmation')
+                            ->password()
+                            ->rules(['required'])
+
                     ])
                     ->columns(3)->columnSpan(4),
                 Section::make('Profile Picture')
@@ -85,57 +67,6 @@ class UserResource extends Resource
                             ->downloadable()
                             ->image()
                     ])->columnSpan(1),
-                Section::make('Company Designation')
-                    ->icon('heroicon-o-building-office')
-                    ->schema([
-                        Forms\Components\Select::make('department_id')
-                            ->label('Department')
-                            ->options(Department::all()->pluck('name', 'id'))
-                            ->searchable(),
-                        Forms\Components\Select::make('contractor_type_id')
-                            ->label('Contractor Type')
-                            ->options(ContractorType::all()->pluck('name', 'id'))
-                            ->searchable(),
-                        Forms\Components\TextInput::make('contractor_position')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\DatePicker::make('date_hired')
-                            ->required(),
-                        Forms\Components\DatePicker::make('regularization_date')
-                            ->required(),
-                        Forms\Components\TextInput::make('slack_username')
-                            ->maxLength(255),
-                        Forms\Components\Toggle::make('hmo_active')
-                            ->required(),
-                        Forms\Components\Toggle::make('is_active')
-                            ->required(),
-                        Forms\Components\DateTimePicker::make('email_verified_at'),
-                    ])
-                    ->columns(3)->columnSpan(4),
-                Section::make('Bank Details')
-                    ->icon('heroicon-o-banknotes')
-                    ->schema([
-                        Forms\Components\TextInput::make('bank_name')
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('bank_account_name')
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('bank_account_number')
-                            ->maxLength(255),   
-                    ])
-                    ->columns(3)->columnSpan(4),
-                Section::make('Emergency Contact')
-                    ->icon('heroicon-o-users')
-                    ->schema([
-                        Forms\Components\TextInput::make('emergency_contact_person')
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('emergency_contact_number')
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('relationship_to_emergency_contact')
-                            ->maxLength(255),  
-                        Forms\Components\Textarea::make('emergency_contact_person_address')
-                            ->columnSpanFull(),      
-                    ])
-                    ->columns(3)->columnSpan(4),
             ])->columns(5);
     }
 
@@ -144,27 +75,13 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('contractor_id_number')
-                    ->label('ID Number')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('first_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('department.name')
-                    ->label('Department')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('contractorType.name')
-                    ->label('Contractor Type')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('contractor_position')
-                    ->label('Position')
-                    ->searchable(),
-                    Tables\Columns\IconColumn::make('is_active')
+                Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
             ])
             ->filters([
@@ -172,6 +89,7 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

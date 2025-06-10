@@ -10,8 +10,12 @@ return [
             'label' => 'Email address',
         ],
 
-        'name' => [
-            'label' => 'Name',
+        'first_name' => [
+            'label' => 'First Name',
+        ],
+
+        'last_name' => [
+            'label' => 'Last Name',
         ],
 
         'password' => [
