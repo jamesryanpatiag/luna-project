@@ -1,0 +1,8 @@
+.env
+.env.testing
+/vendor
+database/temp/*
+resources/views/vendor/
+lang/vendor/filament-docs/
+public/*
+database/migrations/.gitkeep
