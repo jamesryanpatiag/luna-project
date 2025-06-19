@@ -17,6 +17,11 @@ use Filament\Forms\Components\Section;
 use Filament\Actions\ExportAction;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Actions\ActionGroup;
+use TomatoPHP\FilamentDocs\Filament\Actions\DocumentAction;
+use TomatoPHP\FilamentDocs\Services\Contracts\DocsVar;
+use App\Filament\Exports\EmployeeExporter;
+
+
 
 class EmployeeResource extends Resource
 {
@@ -67,6 +72,8 @@ class EmployeeResource extends Resource
                             'SEPARATED' => 'Separated'
                         ]),
                     Forms\Components\TextInput::make('tin_number')
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('sss_number')
                         ->maxLength(255),
                     Forms\Components\Textarea::make('current_home_address')
                         ->columnSpanFull(),
@@ -166,22 +173,35 @@ class EmployeeResource extends Resource
                 //
             ])
             ->actions([
+                DocumentAction::make()
+                ->vars(fn($record) => [
+                    DocsVar::make('$ACCOUNT_FIRST_NAME')
+                        ->value($record->first_name),
+                    DocsVar::make('$ACCOUNT_LASTNAME')
+                        ->value($record->last_name),
+                    DocsVar::make('$ACCOUNT_NAME')
+                        ->value($record->first_name . " " . $record->last_name),
+                    DocsVar::make('$HIREDDATE')
+                        ->value($record->date_hired),
+                    DocsVar::make('$END_DATE')
+                        ->value("Present"),
+                    DocsVar::make('$POSITION')
+                        ->value($record->contractor_position),
+                    DocsVar::make('$DEPARTMENT')
+                        ->value($record->department->name),
+                    DocsVar::make('$SPACE')
+                        ->value("&nbsp;&nbsp;")
+                ]),
                 ActionGroup::make([
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\Action::make('generate_coe')
-                        ->label(__('Generate COE'))
-                        ->icon('heroicon-o-document')
-                        ->url(function($record){
-                            return self::getUrl('generate_coe', ['record' => $record]);
-                        })
                 ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 Tables\Actions\ExportBulkAction::make()
-                    ->exporter(UserExporter::class)
+                    ->exporter(EmployeeExporter::class)
                 ]),
             ]);
     }

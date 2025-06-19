@@ -69,6 +69,9 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->plugin(
+                \TomatoPHP\FilamentDocs\FilamentDocsPlugin::make()
+            )
             ->brandLogo(asset('images/Logo.png'))
             ->brandLogoHeight('3.5rem')
             ->defaultThemeMode(ThemeMode::Dark);

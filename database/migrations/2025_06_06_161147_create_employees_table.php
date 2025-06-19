@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('personal_email')->nullable();
             $table->enum('marital_status', ['MARRIED', 'SINGLE', 'WIDOWED', 'SEPARATED'])->nullable();
             $table->string('tin_number')->nullable();
+            $table->string('sss_number')->nullable();
             $table->string('emergency_contact_person')->nullable();
             $table->string('emergency_contact_number')->nullable();
             $table->text('emergency_contact_person_address')->nullable();

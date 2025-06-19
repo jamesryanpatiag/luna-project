@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Department;
 
 class Employee extends Model
 {
@@ -37,4 +38,24 @@ class Employee extends Model
         'email_verified_at',
         'image'
     ];
+
+
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function contractorType()
+    {
+        return $this->belongsTo(ContractorType::class, 'contractor_type_id');
+    }
 }

@@ -69,15 +69,6 @@ class User extends Authenticatable implements FilamentUser, HasName
      *
      * @return BelongsTo
      */
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'department_id');
-    }
-
-    /**
-     *
-     * @return BelongsTo
-     */
     public function contractorType()
     {
         return $this->belongsTo(ContractorType::class, 'contractor_type_id');
