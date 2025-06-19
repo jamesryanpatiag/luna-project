@@ -58,4 +58,9 @@ class Employee extends Model
     {
         return $this->belongsTo(ContractorType::class, 'contractor_type_id');
     }
+
+    public function documents()
+    {
+        return $this->hasMany(EmployeeDocument::class, 'employee_id', 'id');
+    }
 }

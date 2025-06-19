@@ -20,6 +20,7 @@ use Filament\Tables\Actions\ActionGroup;
 use TomatoPHP\FilamentDocs\Filament\Actions\DocumentAction;
 use TomatoPHP\FilamentDocs\Services\Contracts\DocsVar;
 use App\Filament\Exports\EmployeeExporter;
+use App\Filament\Resources\EmployeeResource\RelationManagers\DocumentsRelationManager;
 
 
 
@@ -173,7 +174,7 @@ class EmployeeResource extends Resource
                 //
             ])
             ->actions([
-                DocumentAction::make()
+                DocumentAction::make('Generate')
                 ->vars(fn($record) => [
                     DocsVar::make('$ACCOUNT_FIRST_NAME')
                         ->value($record->first_name),
@@ -192,10 +193,8 @@ class EmployeeResource extends Resource
                     DocsVar::make('$SPACE')
                         ->value("&nbsp;&nbsp;")
                 ]),
-                ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                ])
+                Tables\Actions\EditAction::make()->iconButton(),
+                Tables\Actions\DeleteAction::make()->iconButton(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -209,7 +208,7 @@ class EmployeeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            DocumentsRelationManager::class
         ];
     }
 
