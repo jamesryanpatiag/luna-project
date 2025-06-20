@@ -104,7 +104,7 @@ class EmployeeImporter extends Importer
             throw new RowImportFailedException("Invalid contractor type : " . $this->data['contractorType']);
         }
 
-        $department = Deparment::where('name', $this->data['department'])->first();
+        $department = Department::where('name', $this->data['department'])->first();
 
         if (!$department) {
             throw new RowImportFailedException("Invalid department : " . $this->data['department']);
