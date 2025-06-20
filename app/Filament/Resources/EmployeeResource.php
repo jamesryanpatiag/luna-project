@@ -21,6 +21,7 @@ use TomatoPHP\FilamentDocs\Filament\Actions\DocumentAction;
 use TomatoPHP\FilamentDocs\Services\Contracts\DocsVar;
 use App\Filament\Exports\EmployeeExporter;
 use App\Filament\Resources\EmployeeResource\RelationManagers\DocumentsRelationManager;
+use App\Filament\Imports\EmployeeImporter;
 
 
 
@@ -38,7 +39,6 @@ class EmployeeResource extends Resource
                 ->icon('heroicon-o-user')
                 ->schema([
                     Forms\Components\TextInput::make('contractor_id_number')
-                        ->rules(['required'])
                         ->maxLength(255),
                     Forms\Components\TextInput::make('email')
                         ->label('Company Email')
@@ -195,6 +195,9 @@ class EmployeeResource extends Resource
                 ]),
                 Tables\Actions\EditAction::make()->iconButton(),
                 Tables\Actions\DeleteAction::make()->iconButton(),
+            ])
+            ->headerActions([
+                Tables\Actions\ImportAction::make()->importer(EmployeeImporter::class)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
