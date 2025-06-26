@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class TimeInTimeOutData extends Model
 {
     protected $fillable = [
-        'name',
-        'description',
-        'slack_hook'
+        'user_id',
+        'start_time',
+        'end_time',
     ];
 }

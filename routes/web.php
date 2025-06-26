@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Timeintimeout;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('/member/inOurOut', 'TimeInTimeOutController@inOrOut')->name('member.inOrOut');
+Route::get('/', Timeintimeout::class)->name('timeintimeout');
