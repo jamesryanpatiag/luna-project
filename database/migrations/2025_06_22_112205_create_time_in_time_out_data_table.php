@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('time_in_time_out_data', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->datetime('start_time');
             $table->datetime('end_time')->nullable();
             $table->timestamps();
