@@ -81,11 +81,11 @@ class Timeintimeout extends Component
 
         if ($this->notes != null) {
             $data = [
-                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n (" . $this->notes . ") : [" . Carbon::now('Asia/Manila') . "]"
+                'text' => "Time-out: " . $employee->first_name . " " . $employee->last_name . " \n (" . $this->notes . ") : [" . Carbon::now('Asia/Manila') . "]"
             ];
         } else {
             $data = [
-                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n [" . Carbon::now('Asia/Manila') . "]"
+                'text' => "Time-out: " . $employee->first_name . " " . $employee->last_name . " \n [" . Carbon::now('Asia/Manila') . "]"
             ];
         }
 
