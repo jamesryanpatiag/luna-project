@@ -15,6 +15,7 @@ class Timeintimeout extends Component
     public $employeeNumber;
     public $lastname;
     public $type;
+    public $notes;
 
     public function render()
     {
@@ -38,10 +39,18 @@ class Timeintimeout extends Component
 
         $this->lastname = '';
         $this->employeeNumber = '';
+        $this->notes;
 
-        $data = [
-            'text' => "Timed-in: " . $employee->first_name . " " . $employee->last_name . " (" . Carbon::now('Asia/Manila') . ")"
-        ];
+        if ($this->notes != null) {
+            $data = [
+                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n (" . $this->notes . ") [" . Carbon::now('Asia/Manila') . "]"
+            ];
+        } else {
+            $data = [
+                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n [" . Carbon::now('Asia/Manila') . "]"
+            ];
+        }
+        
 
         $hook = $employee->department->slack_hook;
 
@@ -68,10 +77,17 @@ class Timeintimeout extends Component
 
         $this->lastname = '';
         $this->employeeNumber = '';
+        $this->notes;
 
-        $data = [
-            'text' => "Timed-out: " . $employee->first_name . " " . $employee->last_name . " (" . Carbon::now('Asia/Manila') . ")"
-        ];
+        if ($this->notes != null) {
+            $data = [
+                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n (" . $this->notes . ") : [" . Carbon::now('Asia/Manila') . "]"
+            ];
+        } else {
+            $data = [
+                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n [" . Carbon::now('Asia/Manila') . "]"
+            ];
+        }
 
         $hook = $employee->department->slack_hook;
 

@@ -22,6 +22,10 @@
                 <input type="lastname" class="form-control" wire:model.debounce:500="lastname" placeholder="Enter your lastname">
                 @error('password') <span class="error">{{ $message }}</span> @enderror
               </div>
+              <div class="mb-3">
+                <label for="notes" class="form-label">Notes</label>
+                <input type="notes" class="form-control" wire:model.debounce:500="notes" placeholder="Enter your Notes">
+              </div>
               <div class="d-flex justify-content-between">
                 <button wire:click="in" class="btn btn-success w-45">Time In</button>
                 <button wire:click="out" class="btn btn-danger w-45">Time Out</button>

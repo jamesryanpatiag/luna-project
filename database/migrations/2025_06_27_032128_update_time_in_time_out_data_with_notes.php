@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('time_in_time_out_data', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->datetime('start_time');
-            $table->datetime('end_time')->nullable();
-            $table->timestamps();
+        Schema::table('time_in_time_out_data', function (Blueprint $table) {
+            $table->string('notes')->nullable();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('time_in_time_out_data');
+        Schema::table('time_out_data_with_notes', function (Blueprint $table) {
+            //
+        });
     }
 };
