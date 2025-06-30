@@ -17,7 +17,7 @@ class ContractorTypeResource extends Resource
 {
     protected static ?string $model = ContractorType::class;
 
-    protected static ?string $navigationGroup = 'Settings';
+    protected static ?string $navigationGroup = 'Content';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

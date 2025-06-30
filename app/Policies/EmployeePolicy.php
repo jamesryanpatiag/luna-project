@@ -105,4 +105,12 @@ class EmployeePolicy
     {
         return $user->can('reorder_employee');
     }
+
+    /**
+     * Determine whether the user can import.
+     */
+    public function importEmployee(User $user): bool
+    {
+        return $user->can('import_employee');
+    }
 }

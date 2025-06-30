@@ -22,10 +22,12 @@ use TomatoPHP\FilamentDocs\Services\Contracts\DocsVar;
 use App\Filament\Exports\EmployeeExporter;
 use App\Filament\Resources\EmployeeResource\RelationManagers\DocumentsRelationManager;
 use App\Filament\Imports\EmployeeImporter;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
+use Auth;
 
 
 
-class EmployeeResource extends Resource
+class EmployeeResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Employee::class;
 
@@ -174,7 +176,6 @@ class EmployeeResource extends Resource
                     ->wrap()
                     ->searchable(),
                     Tables\Columns\IconColumn::make('is_active')
-                    ->sortable()
                     ->boolean(),
             ])
             ->filters([
@@ -205,6 +206,7 @@ class EmployeeResource extends Resource
             ])
             ->headerActions([
                 Tables\Actions\ImportAction::make()->importer(EmployeeImporter::class)
+                    ->authorize(fn () => Auth::user()->can('import_employee'))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -229,6 +231,25 @@ class EmployeeResource extends Resource
             'create' => Pages\CreateEmployee::route('/create'),
             'edit' => Pages\EditEmployee::route('/{record}/edit'),
             'generate_coe' => Pages\CertificateOfEmployment::route('/{record}/generate_coe')
+        ];
+    }
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'import',
+            'reorder',
+            'replicate',
+            'restore_any',
+            'restore',
+            'force_delete_any',
+            'force_delete',
+            'delete_any',
+            'delete',
+            'update',
+            'view_any',
+            'view',
+            'create'
         ];
     }
 }
