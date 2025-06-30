@@ -33,6 +33,10 @@ class ValidateUserByEmpNumAndLastNameRule implements ValidationRule
             $lastData = TimeInTimeOutData::where('user_id', $data->id)->orderByDesc('id')->first();
 
             if (!$lastData) {
+
+                if ($this->type == "out") {
+                    $fail("Time-in first before timing out");
+                }
                 
             } else {
     
