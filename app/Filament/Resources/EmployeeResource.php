@@ -150,15 +150,20 @@ class EmployeeResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('contractor_id_number')
+                    ->sortable()
                     ->label('ID Number')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('first_name')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('department.name')
+                    ->sortable()
                     ->label('Department')
                     ->numeric(),
                 Tables\Columns\TextColumn::make('contractorType.name')
@@ -169,6 +174,7 @@ class EmployeeResource extends Resource
                     ->wrap()
                     ->searchable(),
                     Tables\Columns\IconColumn::make('is_active')
+                    ->sortable()
                     ->boolean(),
             ])
             ->filters([
