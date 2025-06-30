@@ -166,6 +166,7 @@ class EmployeeResource extends Resource
                     ->numeric(),
                 Tables\Columns\TextColumn::make('contractor_position')
                     ->label('Position')
+                    ->wrap()
                     ->searchable(),
                     Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
