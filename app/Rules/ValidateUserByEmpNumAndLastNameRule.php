@@ -25,7 +25,7 @@ class ValidateUserByEmpNumAndLastNameRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $data = Employee::query()
-                    ->where('last_name', $this->lastName)->where('contractor_id_number', $value)->first();
+                    ->whereRaw('lower(last_name) = ?', strtolower($this->lastName))->where('contractor_id_number', $value)->first();
         
         if (!$data) {
             $fail("Employee doesn't exist!");

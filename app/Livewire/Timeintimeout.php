@@ -30,7 +30,7 @@ class Timeintimeout extends Component
                 'lastname'          => ['required']
             ]
         );
-        $employee = Employee::query()->where('last_name', $this->lastname)->where('contractor_id_number', $this->employeeNumber)->first();
+        $employee = Employee::query()->whereRaw('lower(last_name) = ?', strtolower($this->lastname))->where('contractor_id_number', $this->employeeNumber)->first();
 
         $userTimeIn = new TimeInTimeOutData();
         $userTimeIn->user_id = $employee->id;
@@ -69,7 +69,7 @@ class Timeintimeout extends Component
         );
 
         $employee = Employee::query()
-                    ->where('last_name', $this->lastname)->where('contractor_id_number', $this->employeeNumber)->first();
+                    ->whereRaw('lower(last_name) =  ?', strtolower($this->lastname))->where('contractor_id_number', $this->employeeNumber)->first();
 
         $lastData = TimeInTimeOutData::where('user_id', $employee->id)->orderByDesc('id')->first();
         $lastData->end_time = Carbon::now();

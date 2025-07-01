@@ -19,6 +19,10 @@ class TimeInTimeOutDataResource extends Resource
 
     protected static ?string $navigationGroup = 'Transactions';
 
+    protected static ?string $navigationLabel = "Time-in/Time-out";
+
+    protected static ?string $breadcrumb = "Time-in/Time-out";
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public ?string $tableSortColumn = 'id';
@@ -47,6 +51,10 @@ class TimeInTimeOutDataResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('employee.last_name')
                     ->label('Last Name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('employee.department.name')
+                    ->label('Department')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_time')
