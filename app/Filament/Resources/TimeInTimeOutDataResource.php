@@ -21,6 +21,10 @@ class TimeInTimeOutDataResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public ?string $tableSortColumn = 'id';
+
+    public ?string $tableSortDirection = 'desc';
+
     public static function form(Form $form): Form
     {
         return $form
