@@ -38,9 +38,11 @@ class TimeInTimeOutDataResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('employee.first_name')
+                    ->label('First Name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('employee.last_name')
+                    ->label('Last Name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_time')
