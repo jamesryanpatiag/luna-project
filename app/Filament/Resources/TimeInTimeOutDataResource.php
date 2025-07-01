@@ -37,7 +37,10 @@ class TimeInTimeOutDataResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('employee.name')
+                Tables\Columns\TextColumn::make('employee.first_name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('employee.last_name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_time')
@@ -46,14 +49,6 @@ class TimeInTimeOutDataResource extends Resource
                 Tables\Columns\TextColumn::make('end_time')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
