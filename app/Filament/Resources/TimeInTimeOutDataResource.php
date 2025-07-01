@@ -47,8 +47,10 @@ class TimeInTimeOutDataResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_time')
                     ->dateTime()
+                    ->timezone('Asia/Manila')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('end_time')
+                    ->timezone('Asia/Manila')
                     ->dateTime()
                     ->sortable(),
             ])
