@@ -53,7 +53,7 @@ class TimeInTimeOutDataResource extends Resource
                     ->timezone('Asia/Manila')
                     ->dateTime()
                     ->sortable(),
-            ])
+            ])->defaultSort('id', 'asc')
             ->filters([
                 //
             ])
