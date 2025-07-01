@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Department;
 
 class Employee extends Model
@@ -62,5 +63,11 @@ class Employee extends Model
     public function documents()
     {
         return $this->hasMany(EmployeeDocument::class, 'employee_id', 'id');
+    }
+
+    protected function name() : Attribute {
+        return Attribute::make(
+            get: fn () => $this->first_name . ' ' . $this->last_name,
+        );
     }
 }
