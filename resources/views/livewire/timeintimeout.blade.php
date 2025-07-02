@@ -8,6 +8,11 @@
               </div>
           @endif
       </div>
+      <div>
+          <a href="#">Time-In/Time-Out</a>
+          <label style="color: #7b82e3"> | </label>
+          <a href="#">Leave Filing</a>
+      </div>
         <div style="border:0px;background-color:#111828;" class="card shadow rounded-4">
           <img src="{{ asset('images/Logo.png') }}" style="height: 100px;width: 100px; margin: 20px auto"/>
           <div style="border:0px;background-color:#111828" class="card-body p-4 rounded-4">

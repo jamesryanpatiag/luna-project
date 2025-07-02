@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use App\Rules\ValidateUserByEmpNumAndLastNameRule;
 use Log;
+use Exception;
 
 class Timeintimeout extends Component
 {
@@ -41,20 +42,23 @@ class Timeintimeout extends Component
         $this->employeeNumber = '';
         $this->notes;
 
-        if ($this->notes != null) {
-            $data = [
-                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "] : (" . $this->notes . ")"
-            ];
-        } else {
-            $data = [
-                'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "]"
-            ];
+        try {
+            if ($this->notes != null) {
+                $data = [
+                    'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "] : (" . $this->notes . ")"
+                ];
+            } else {
+                $data = [
+                    'text' => "Time-in: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "]"
+                ];
+            }            
+
+            $hook = $employee->department->slack_hook;
+            $response = Http::post($hook, $data);
+
+        } catch (\Exception $e) {
+            //
         }
-        
-
-        $hook = $employee->department->slack_hook;
-
-        $response = Http::post($hook, $data);
 
         session()->flash('message', 'Time-in Success.');
 
@@ -79,19 +83,22 @@ class Timeintimeout extends Component
         $this->employeeNumber = '';
         $this->notes;
 
-        if ($this->notes != null) {
-            $data = [
-                'text' => "Time-out: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "] : (" . $this->notes . ")"
-            ];
-        } else {
-            $data = [
-                'text' => "Time-out: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "]"
-            ];
+        try {
+            if ($this->notes != null) {
+                $data = [
+                    'text' => "Time-out: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "] : (" . $this->notes . ")"
+                ];
+            } else {
+                $data = [
+                    'text' => "Time-out: " . $employee->first_name . " " . $employee->last_name . " \n[" . Carbon::now('Asia/Manila') . "]"
+                ];
+            }
+            $hook = $employee->department->slack_hook;
+            $response = Http::post($hook, $data);
+            
+        } catch (\Exception $e) {
+            //
         }
-
-        $hook = $employee->department->slack_hook;
-
-        $response = Http::post($hook, $data);
 
         session()->flash('message', 'Time-out Success.');
 

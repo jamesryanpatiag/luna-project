@@ -167,7 +167,7 @@ class EmployeeResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make('department.name')
                     ->sortable()
                     ->label('Department')
-                    ->numeric(),
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('contractorType.name')
                     ->label('Contractor Type')
                     ->numeric(),
