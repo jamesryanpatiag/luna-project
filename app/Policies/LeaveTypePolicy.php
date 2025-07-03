@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Employee;
+use App\Models\LeaveType;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class EmployeePolicy
+class LeaveTypePolicy
 {
     use HandlesAuthorization;
 
@@ -15,15 +15,15 @@ class EmployeePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_employee');
+        return $user->can('view_any_leave::type');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Employee $employee): bool
+    public function view(User $user, LeaveType $leaveType): bool
     {
-        return $user->can('view_employee');
+        return $user->can('view_leave::type');
     }
 
     /**
@@ -31,23 +31,23 @@ class EmployeePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_employee');
+        return $user->can('create_leave::type');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Employee $employee): bool
+    public function update(User $user, LeaveType $leaveType): bool
     {
-        return $user->can('update_employee');
+        return $user->can('update_leave::type');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Employee $employee): bool
+    public function delete(User $user, LeaveType $leaveType): bool
     {
-        return $user->can('delete_employee');
+        return $user->can('delete_leave::type');
     }
 
     /**
@@ -55,15 +55,15 @@ class EmployeePolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_employee');
+        return $user->can('delete_any_leave::type');
     }
 
     /**
      * Determine whether the user can permanently delete.
      */
-    public function forceDelete(User $user, Employee $employee): bool
+    public function forceDelete(User $user, LeaveType $leaveType): bool
     {
-        return $user->can('force_delete_employee');
+        return $user->can('force_delete_leave::type');
     }
 
     /**
@@ -71,15 +71,15 @@ class EmployeePolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_employee');
+        return $user->can('force_delete_any_leave::type');
     }
 
     /**
      * Determine whether the user can restore.
      */
-    public function restore(User $user, Employee $employee): bool
+    public function restore(User $user, LeaveType $leaveType): bool
     {
-        return $user->can('restore_employee');
+        return $user->can('restore_leave::type');
     }
 
     /**
@@ -87,15 +87,15 @@ class EmployeePolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_employee');
+        return $user->can('restore_any_leave::type');
     }
 
     /**
      * Determine whether the user can replicate.
      */
-    public function replicate(User $user, Employee $employee): bool
+    public function replicate(User $user, LeaveType $leaveType): bool
     {
-        return $user->can('replicate_employee');
+        return $user->can('replicate_leave::type');
     }
 
     /**
@@ -103,6 +103,6 @@ class EmployeePolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_employee');
+        return $user->can('reorder_leave::type');
     }
 }

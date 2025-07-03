@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Employee;
+use App\Models\TimeInTimeOutData;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class EmployeePolicy
+class TimeInTimeOutDataPolicy
 {
     use HandlesAuthorization;
 
@@ -15,15 +15,15 @@ class EmployeePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_employee');
+        return $user->can('view_any_time::in::time::out::data');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Employee $employee): bool
+    public function view(User $user, TimeInTimeOutData $timeInTimeOutData): bool
     {
-        return $user->can('view_employee');
+        return $user->can('view_time::in::time::out::data');
     }
 
     /**
@@ -31,23 +31,23 @@ class EmployeePolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_employee');
+        return $user->can('create_time::in::time::out::data');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Employee $employee): bool
+    public function update(User $user, TimeInTimeOutData $timeInTimeOutData): bool
     {
-        return $user->can('update_employee');
+        return $user->can('update_time::in::time::out::data');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Employee $employee): bool
+    public function delete(User $user, TimeInTimeOutData $timeInTimeOutData): bool
     {
-        return $user->can('delete_employee');
+        return $user->can('delete_time::in::time::out::data');
     }
 
     /**
@@ -55,15 +55,15 @@ class EmployeePolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_employee');
+        return $user->can('delete_any_time::in::time::out::data');
     }
 
     /**
      * Determine whether the user can permanently delete.
      */
-    public function forceDelete(User $user, Employee $employee): bool
+    public function forceDelete(User $user, TimeInTimeOutData $timeInTimeOutData): bool
     {
-        return $user->can('force_delete_employee');
+        return $user->can('force_delete_time::in::time::out::data');
     }
 
     /**
@@ -71,15 +71,15 @@ class EmployeePolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_employee');
+        return $user->can('force_delete_any_time::in::time::out::data');
     }
 
     /**
      * Determine whether the user can restore.
      */
-    public function restore(User $user, Employee $employee): bool
+    public function restore(User $user, TimeInTimeOutData $timeInTimeOutData): bool
     {
-        return $user->can('restore_employee');
+        return $user->can('restore_time::in::time::out::data');
     }
 
     /**
@@ -87,15 +87,15 @@ class EmployeePolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_employee');
+        return $user->can('restore_any_time::in::time::out::data');
     }
 
     /**
      * Determine whether the user can replicate.
      */
-    public function replicate(User $user, Employee $employee): bool
+    public function replicate(User $user, TimeInTimeOutData $timeInTimeOutData): bool
     {
-        return $user->can('replicate_employee');
+        return $user->can('replicate_time::in::time::out::data');
     }
 
     /**
@@ -103,6 +103,6 @@ class EmployeePolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_employee');
+        return $user->can('reorder_time::in::time::out::data');
     }
 }
