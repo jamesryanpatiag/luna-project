@@ -36,6 +36,7 @@ class Timeintimeout extends Component
         $userTimeIn = new TimeInTimeOutData();
         $userTimeIn->user_id = $employee->id;
         $userTimeIn->start_time = Carbon::now();
+        $userTimeIn->notes = $this->notes ?? '';
         $userTimeIn->save();
 
         $this->lastname = '';
@@ -77,6 +78,7 @@ class Timeintimeout extends Component
 
         $lastData = TimeInTimeOutData::where('user_id', $employee->id)->orderByDesc('id')->first();
         $lastData->end_time = Carbon::now();
+        $lastData->checkout_notes = $this->notes ?? '';
         $lastData->save();
 
         $this->lastname = '';

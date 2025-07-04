@@ -48,15 +48,28 @@ class TimeInTimeOutDataResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('employee.first_name')
                     ->label('First Name')
+                    ->wrap()
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('employee.last_name')
                     ->label('Last Name')
                     ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('employee.department.name')
                     ->label('Department')
                     ->searchable()
+                    ->wrap()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('notes')
+                    ->label('Time-In Notes')
+                    ->searchable()
+                    ->wrap()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('checkout_notes')
+                    ->label('Time-Out Notes')
+                    ->searchable()
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_time')
                     ->dateTime()

@@ -21,7 +21,10 @@ class TimeInTimeOutDataExporter extends Exporter
             ExportColumn::make('employee.last_name')
                 ->label('Last Name'),
             ExportColumn::make('employee.department.name'),
-            ExportColumn::make('notes'),
+            ExportColumn::make('notes')
+                ->label('Time-In Notes'),
+            ExportColumn::make('checkout_notes')
+                ->label('Time-Out Notes'),
             ExportColumn::make('start_time'),
             ExportColumn::make('end_time'),
             ExportColumn::make('created_at'),
