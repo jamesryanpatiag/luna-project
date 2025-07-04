@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TimeInTimeOutDataResource\Pages;
 use App\Filament\Resources\TimeInTimeOutDataResource\RelationManagers;
 use App\Models\TimeInTimeOutData;
+use App\Filament\Exports\TimeInTimeOutDataExporter;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -75,7 +76,9 @@ class TimeInTimeOutDataResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ExportBulkAction::make()->exporter(TimeInTimeOutDataExporter::class)
                 ]),
+                
             ]);
     }
 
