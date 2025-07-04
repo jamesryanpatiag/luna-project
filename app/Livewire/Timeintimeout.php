@@ -41,7 +41,7 @@ class Timeintimeout extends Component
 
         $this->lastname = '';
         $this->employeeNumber = '';
-        $this->notes;
+        $this->notes = '';
 
         try {
             if ($this->notes != null) {
@@ -83,7 +83,7 @@ class Timeintimeout extends Component
 
         $this->lastname = '';
         $this->employeeNumber = '';
-        $this->notes;
+        $this->notes = '';
 
         try {
             if ($this->notes != null) {
