@@ -16,8 +16,10 @@ class TimeInTimeOutDataExporter extends Exporter
         return [
             ExportColumn::make('id')
                 ->label('ID'),
-            ExportColumn::make('employee.first_name'),
-            ExportColumn::make('employee.last_name'),
+            ExportColumn::make('employee.first_name')
+                ->label('First Name'),
+            ExportColumn::make('employee.last_name')
+                ->label('Last Name'),
             ExportColumn::make('employee.department.name'),
             ExportColumn::make('notes'),
             ExportColumn::make('start_time'),
