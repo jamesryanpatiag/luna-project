@@ -76,7 +76,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 \TomatoPHP\FilamentDocs\FilamentDocsPlugin::make()
             )
-            ->brandLogo(asset('images/Logo.png'))
+            ->brandLogo(asset('images/Logo-luna.png'))
             ->brandLogoHeight('3.5rem')
             ->defaultThemeMode(ThemeMode::Dark);
     }

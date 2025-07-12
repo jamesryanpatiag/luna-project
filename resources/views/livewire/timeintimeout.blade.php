@@ -25,7 +25,7 @@
           Leave Filing</a>
       </div>
         <div style="border:0px;background-color:#111828;" class="card shadow rounded-4">
-        <img src="{{ asset('images/Logo.png') }}" style="height: 110px;width: 250px; margin: 20px auto -5px auto"/>
+        <img src="{{ asset('images/Logo-luna.png') }}" style="height: 110px;width: 250px; margin: 20px auto -5px auto"/>
         <div style="border:0px;background-color:#111828" class="card-body p-4 rounded-4">
             <h3 style="color: #7b82e3" class="card-title text-center mb-4">Employee Time In / Time Out</h3>
               <div class="mb-3">
