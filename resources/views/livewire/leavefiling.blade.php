@@ -27,19 +27,19 @@
         <div style="border:0px;background-color:#111828;" class="card shadow rounded-4">
           <img src="{{ asset('images/Logo-luna.png') }}" style="height: 110px;width: 250px; margin: 20px auto -5px auto"/>
           <div style="border:0px;background-color:#111828" class="card-body p-4 rounded-4">
-            <h3 style="color: #7b82e3" class="card-title text-center mb-4">Employee Leave Form</h3>
+            <h3 style="color: #e2c56d" class="card-title text-center mb-4">Employee Leave Form</h3>
               <div class="mb-3">
-                <label for="employeeNumber" class="form-label">Employee Number</label>
+                <label style="color: #e2c56d" for="employeeNumber" class="form-label">Employee Number</label>
                 <input type="text" class="form-control" wire:model.debounce:500="employeeNumber"placeholder="Enter your employee number">
                 @error('employeeNumber') <span class="error">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
-                <label for="lastname" class="form-label">Lastname</label>
+                <label style="color: #e2c56d" for="lastname" class="form-label">Lastname</label>
                 <input type="text" class="form-control" wire:model.debounce:500="lastname" placeholder="Enter your lastname">
                 @error('lastname') <span class="error">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
-              <label for="leaveType" class="form-label">Leave Type</label>
+              <label style="color: #e2c56d" for="leaveType" class="form-label">Leave Type</label>
                 <select id="leaveTypes" class="form-control" wire:model="leaveType">
                     <option value="">Select Leave Type</option>
                     @foreach ($leaveTypes as $key => $leaveType)
@@ -53,18 +53,18 @@
             </div>
             <div class="row">
               <div class="mb-3 col-md-6">
-                  <label for="startDate" class="form-label">Start Date</label>
+                  <label style="color: #e2c56d" for="startDate" class="form-label">Start Date</label>
                   <input type="date" class="form-control" wire:model.debounce:500="startDate">
                   @error('startDate') <span class="error">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3 col-md-6">
-                  <label for="endDate" class="form-label">End Date</label>
+                  <label style="color: #e2c56d" for="endDate" class="form-label">End Date</label>
                   <input type="date" class="form-control" wire:model.debounce:500="endDate">
                   @error('endDate') <span class="error">{{ $message }}</span> @enderror
               </div>
             </div>
             <div class="mb-3">
-                <label for="shift" class="form-label">Shift</label>
+                <label style="color: #e2c56d" for="shift" class="form-label">Shift</label>
                 <select id="shift" class="form-control" wire:model="shift">
                     <option value="">Select Shift</option>
                     @foreach ($shifts as $shift)
@@ -77,7 +77,7 @@
                 @enderror
             </div>
               <div class="mb-3">
-                <label for="notes" class="form-label">Reason</label>
+                <label style="color: #e2c56d" for="notes" class="form-label">Reason</label>
                 <textarea type="text" class="form-control" wire:model.debounce:500="notes" placeholder="Enter your Reason"></textarea>
                 @error('notes') <span class="error">{{ $message }}</span> @enderror
               </div>

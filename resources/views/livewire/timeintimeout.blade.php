@@ -27,19 +27,19 @@
         <div style="border:0px;background-color:#111828;" class="card shadow rounded-4">
         <img src="{{ asset('images/Logo-luna.png') }}" style="height: 110px;width: 250px; margin: 20px auto -5px auto"/>
         <div style="border:0px;background-color:#111828" class="card-body p-4 rounded-4">
-            <h3 style="color: #7b82e3" class="card-title text-center mb-4">Employee Time In / Time Out</h3>
+            <h3 style="color: #e2c56d" class="card-title text-center mb-4">Employee Time In / Time Out</h3>
               <div class="mb-3">
-                <label for="employeeNumber" class="form-label">Employee Number</label>
+                <label style="color: #e2c56d" for="employeeNumber" class="form-label">Employee Number</label>
                 <input type="text" class="form-control" wire:model.debounce:500="employeeNumber"placeholder="Enter your employee number">
                 @error('employeeNumber') <span class="error">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
-                <label for="lastname" class="form-label">Lastname</label>
+                <label style="color: #e2c56d" for="lastname" class="form-label">Lastname</label>
                 <input type="text" class="form-control" wire:model.debounce:500="lastname" placeholder="Enter your lastname">
                 @error('password') <span class="error">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
-                <label for="notes" class="form-label">Notes</label>
+                <label style="color: #e2c56d" for="notes" class="form-label">Notes</label>
                 <input type="text" class="form-control" wire:model.debounce:500="notes" placeholder="Enter your Notes">
               </div>
               <div class="d-flex justify-content-between">
