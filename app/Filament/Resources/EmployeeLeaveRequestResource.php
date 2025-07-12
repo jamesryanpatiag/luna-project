@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EmployeeLeaveRequestResource\Pages;
 use App\Filament\Resources\EmployeeLeaveRequestResource\RelationManagers;
 use App\Models\EmployeeLeaveRequest;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Employee;
 use App\Models\LeaveType;
+use Log;
 
 class EmployeeLeaveRequestResource extends Resource
 {
@@ -56,11 +58,27 @@ class EmployeeLeaveRequestResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('employee_id')
+                Tables\Columns\TextColumn::make('employee.name')
+                    ->label('Name')
+                    ->state(function (Model $data) {
+                        return $data->employee->name;
+                    }),
+                Tables\Columns\TextColumn::make('employee.department.name')
+                    ->label('Department')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('employee.first_name')
+                    ->hidden()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('employee.last_name')
+                    ->searchable()
+                    ->hidden(),
+                Tables\Columns\TextColumn::make('leaveType.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('leave_type_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('shift')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('remarks')
+                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date()

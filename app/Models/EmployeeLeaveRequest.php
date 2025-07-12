@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Employee;
+use App\Models\LeaveType;
 
 class EmployeeLeaveRequest extends Model
 {
@@ -12,6 +14,26 @@ class EmployeeLeaveRequest extends Model
         'start_date',
         'end_date',
         'remarks',
-        'is_approve'
+        'is_approve',
+        'shift'
     ];
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function leaveType()
+    {
+        return $this->belongsTo(LeaveType::class, 'leave_type_id');
+    }
+    
 }
