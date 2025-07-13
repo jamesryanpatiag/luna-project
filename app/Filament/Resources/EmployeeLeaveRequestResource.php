@@ -32,6 +32,11 @@ class EmployeeLeaveRequestResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::where('status', 'For Approval')->count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -84,11 +89,13 @@ class EmployeeLeaveRequestResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('shift')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\BadgeColumn::make('status')
+                    ->colors([
+                        'primary'     =>  'For Approval',
+                        'success'      =>  'Approved',
+                        'danger'      =>  'Rejected'
+                    ])
                     ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('remarks')
-                    ->wrap()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date()
@@ -96,8 +103,9 @@ class EmployeeLeaveRequestResource extends Resource
                 Tables\Columns\TextColumn::make('end_date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('is_approve')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('remarks')
+                    ->wrap()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
