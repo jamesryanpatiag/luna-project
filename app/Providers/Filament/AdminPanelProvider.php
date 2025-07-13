@@ -83,20 +83,9 @@ class AdminPanelProvider extends PanelProvider
                     ->selectable()
                     ->editable()
             )
+            ->globalSearchFieldKeyBindingSuffix()
             ->brandLogo(asset('images/Logo-luna.png'))
             ->brandLogoHeight('3.5rem')
             ->defaultThemeMode(ThemeMode::Light);
-    }
-
-    public function config(): array
-    {
-        return [
-            'firstDay' => 1,
-            'headerToolbar' => [
-                'left' => 'dayGridWeek,dayGridDay',
-                'center' => 'title',
-                'right' => 'prev,next today',
-            ],
-        ];
     }
 }

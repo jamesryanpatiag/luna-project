@@ -24,6 +24,8 @@ use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use App\Filament\Resources\EmployeeResource\RelationManagers\DocumentsRelationManager;
 use App\Filament\Imports\EmployeeImporter;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
+use Filament\GlobalSearch\Actions\Action;
+use Illuminate\Contracts\Support\Htmlable;
 use Auth;
 
 
@@ -33,6 +35,13 @@ class EmployeeResource extends Resource implements HasShieldPermissions
     protected static ?string $model = Employee::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $recordTitleAttribute = 'email';
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['first_name', 'last_name', 'email', 'department.name'];
+    }
 
     public static function form(Form $form): Form
     {
