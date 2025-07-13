@@ -32,17 +32,12 @@ class CalendarWidget extends FullCalendarWidget
                     ->start($event->start_date)
                     ->end(str_replace('12a', '', Carbon::parse($event->end_date)->addDays(1)))
                     ->borderColor("#000000")
-                    ->textColor(
-                        match($event->status) {
-                            'For Approval', 'Approved'  =>  "#000000",
-                            'Rejected'      =>  "#ffffff",
-                            default => null
-                        })
+                    ->textColor("#ffffff")
                     ->backgroundColor(
                             match($event->status) {
-                                'For Approval'  =>  "#19dcdb",
-                                'Approved'      =>  "#1cb139",
-                                'Rejected'      =>  "#e51d38",
+                                'For Approval'  =>"rgb(19, 171, 171)",
+                                'Approved'      =>"rgb(36, 137, 56)",
+                                'Rejected'      =>"rgb(242, 63, 87)",
                                 default => null
                             })
                     ->url(

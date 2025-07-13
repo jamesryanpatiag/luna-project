@@ -190,6 +190,7 @@ class EmployeeResource extends Resource implements HasShieldPermissions
             ])
             ->filters([
                 DateRangeFilter::make('regularization_date'),
+                DateRangeFilter::make('date_hired'),
             ])
             ->actions([
                 DocumentAction::make('Generate')

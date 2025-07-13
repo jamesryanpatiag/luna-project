@@ -22,7 +22,11 @@ class LeaveRequestApproverResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-check';
 
-    protected static ?string $navigationGroup = 'Transactions';
+    protected static ?string $navigationGroup = 'Approvals';
+
+    protected static ?string $navigationLabel = "Leave Requests";
+
+    protected static ?string $breadcrumb = "Leave Requests";
 
     public static function form(Form $form): Form
     {

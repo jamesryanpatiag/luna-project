@@ -24,7 +24,11 @@ class EmployeeLeaveRequestResource extends Resource
 {
     protected static ?string $model = EmployeeLeaveRequest::class;
 
-    protected static ?string $navigationGroup = 'Transactions';
+    protected static ?string $navigationGroup = 'Trackers';
+
+    protected static ?string $navigationLabel = "Leave Tracker";
+
+    protected static ?string $breadcrumb = "Leave Tracker";
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

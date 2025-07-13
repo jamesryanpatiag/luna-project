@@ -19,11 +19,11 @@ class TimeInTimeOutDataResource extends Resource
 {
     protected static ?string $model = TimeInTimeOutData::class;
 
-    protected static ?string $navigationGroup = 'Transactions';
+    protected static ?string $navigationGroup = 'Trackers';
 
-    protected static ?string $navigationLabel = "Time-in/Time-out";
+    protected static ?string $navigationLabel = "Attendance Tracker";
 
-    protected static ?string $breadcrumb = "Time-in/Time-out";
+    protected static ?string $breadcrumb = "Attendance Tracker";
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
