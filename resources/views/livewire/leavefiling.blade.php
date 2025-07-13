@@ -31,12 +31,12 @@
               <div class="mb-3">
                 <label style="color: #e2c56d" for="employeeNumber" class="form-label">Employee Number</label>
                 <input type="text" class="form-control" wire:model.debounce:500="employeeNumber"placeholder="Enter your employee number">
-                @error('employeeNumber') <span class="error">{{ $message }}</span> @enderror
+                @error('employeeNumber') <span style="color:rgb(210, 83, 83)">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
                 <label style="color: #e2c56d" for="lastname" class="form-label">Lastname</label>
                 <input type="text" class="form-control" wire:model.debounce:500="lastname" placeholder="Enter your lastname">
-                @error('lastname') <span class="error">{{ $message }}</span> @enderror
+                @error('lastname') <span style="color:rgb(210, 83, 83)">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
               <label style="color: #e2c56d" for="leaveType" class="form-label">Leave Type</label>
@@ -48,19 +48,19 @@
                     @endforeach
                 </select>
                 @error('leaveType')
-                    <span class="text-danger">{{ $message }}</span>
+                    <span style="color:rgb(210, 83, 83)">{{ $message }}</span>
                 @enderror
             </div>
             <div class="row">
               <div class="mb-3 col-md-6">
                   <label style="color: #e2c56d" for="startDate" class="form-label">Start Date</label>
                   <input type="date" class="form-control" wire:model.debounce:500="startDate">
-                  @error('startDate') <span class="error">{{ $message }}</span> @enderror
+                  @error('startDate') <span style="color:rgb(210, 83, 83)">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3 col-md-6">
                   <label style="color: #e2c56d" for="endDate" class="form-label">End Date</label>
                   <input type="date" class="form-control" wire:model.debounce:500="endDate">
-                  @error('endDate') <span class="error">{{ $message }}</span> @enderror
+                  @error('endDate') <span style="color:rgb(210, 83, 83)">{{ $message }}</span> @enderror
               </div>
             </div>
             <div class="mb-3">
@@ -73,13 +73,13 @@
                     @endforeach
                 </select>
                 @error('shift')
-                    <span class="text-danger">{{ $message }}</span>
+                    <span style="color:rgb(210, 83, 83)">{{ $message }}</span>
                 @enderror
             </div>
               <div class="mb-3">
                 <label style="color: #e2c56d" for="notes" class="form-label">Reason</label>
                 <textarea type="text" class="form-control" wire:model.debounce:500="notes" placeholder="Enter your Reason"></textarea>
-                @error('notes') <span class="error">{{ $message }}</span> @enderror
+                @error('notes') <span style="color:rgb(210, 83, 83)">{{ $message }}</span> @enderror
               </div>
               <div class="d-flex justify-content-between">
                 <button wire:click="submit" class="btn btn-success w-45">Submit</button>

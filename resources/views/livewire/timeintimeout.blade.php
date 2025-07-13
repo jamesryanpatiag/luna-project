@@ -31,12 +31,12 @@
               <div class="mb-3">
                 <label style="color: #e2c56d" for="employeeNumber" class="form-label">Employee Number</label>
                 <input type="text" class="form-control" wire:model.debounce:500="employeeNumber"placeholder="Enter your employee number">
-                @error('employeeNumber') <span class="error">{{ $message }}</span> @enderror
+                @error('employeeNumber') <span style="color:rgb(210, 83, 83)">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
                 <label style="color: #e2c56d" for="lastname" class="form-label">Lastname</label>
                 <input type="text" class="form-control" wire:model.debounce:500="lastname" placeholder="Enter your lastname">
-                @error('password') <span class="error">{{ $message }}</span> @enderror
+                @error('lastname') <span style="color:rgb(210, 83, 83)">{{ $message }}</span> @enderror
               </div>
               <div class="mb-3">
                 <label style="color: #e2c56d" for="notes" class="form-label">Notes</label>
