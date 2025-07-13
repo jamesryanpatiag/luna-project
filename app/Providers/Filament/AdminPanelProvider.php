@@ -22,6 +22,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Support\Enums\MaxWidth;
 use Filament\FontProviders\GoogleFontProvider;
 use App\Filament\Pages\Auth\EditProfile;
+use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
+
 
 
 class AdminPanelProvider extends PanelProvider
@@ -38,7 +40,7 @@ class AdminPanelProvider extends PanelProvider
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' => Color::Zinc,
+                'primary' =>'#e2c56d',
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
@@ -76,8 +78,25 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 \TomatoPHP\FilamentDocs\FilamentDocsPlugin::make()
             )
+            ->plugin(
+                FilamentFullCalendarPlugin::make()
+                    ->selectable()
+                    ->editable()
+            )
             ->brandLogo(asset('images/Logo-luna.png'))
             ->brandLogoHeight('3.5rem')
-            ->defaultThemeMode(ThemeMode::Dark);
+            ->defaultThemeMode(ThemeMode::Light);
+    }
+
+    public function config(): array
+    {
+        return [
+            'firstDay' => 1,
+            'headerToolbar' => [
+                'left' => 'dayGridWeek,dayGridDay',
+                'center' => 'title',
+                'right' => 'prev,next today',
+            ],
+        ];
     }
 }

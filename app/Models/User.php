@@ -9,6 +9,7 @@ use Filament\Models\Contracts\HasName;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\Department;
 use App\Models\ContractorType;
 use Filament\Panel;
@@ -78,5 +79,11 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function documents()
     {
         return $this->hasMany(UserDocument::class, 'user_id', 'id');
+    }
+
+    protected function name() : Attribute {
+        return Attribute::make(
+            get: fn () => $this->first_name . ' ' . $this->last_name,
+        );
     }
 }

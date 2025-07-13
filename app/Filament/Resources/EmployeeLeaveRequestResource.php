@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Employee;
 use App\Models\LeaveType;
+use Saade\FilamentFullCalendar\Actions;
 use Log;
 
 class EmployeeLeaveRequestResource extends Resource
@@ -48,7 +49,9 @@ class EmployeeLeaveRequestResource extends Resource
                 Forms\Components\Textarea::make('remarks')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Toggle::make('is_approve')
+                Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->options(['For Approval' => 'For Approval', 'Approved' => 'Approved', 'Rejected' => 'Rejected'])
                     ->required(),
             ])->columns(2)
         ]);
@@ -59,10 +62,9 @@ class EmployeeLeaveRequestResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('employee.name')
-                    ->label('Name')
-                    ->state(function (Model $data) {
-                        return $data->employee->name;
-                    }),
+                    ->label('Employee Name')
+                    ->searchable(['first_name','last_name'])
+                    ->formatStateUsing(fn (EmployeeLeaveRequest $record): string => $record->employee->first_name . ' ' . $record->employee->last_name),
                 Tables\Columns\TextColumn::make('employee.department.name')
                     ->label('Department')
                     ->searchable(),
@@ -73,9 +75,12 @@ class EmployeeLeaveRequestResource extends Resource
                     ->searchable()
                     ->hidden(),
                 Tables\Columns\TextColumn::make('leaveType.name')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('shift')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('remarks')
                     ->wrap()
@@ -101,7 +106,8 @@ class EmployeeLeaveRequestResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->iconButton(),
+                Tables\Actions\DeleteAction::make()->iconButton(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -123,6 +129,14 @@ class EmployeeLeaveRequestResource extends Resource
             'index' => Pages\ListEmployeeLeaveRequests::route('/'),
             'create' => Pages\CreateEmployeeLeaveRequest::route('/create'),
             'edit' => Pages\EditEmployeeLeaveRequest::route('/{record}/edit'),
+        ];
+    }
+
+    protected function modalActions(): array
+    {
+        return [
+            Actions\EditAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }

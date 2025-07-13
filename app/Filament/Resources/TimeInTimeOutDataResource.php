@@ -46,16 +46,10 @@ class TimeInTimeOutDataResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('employee.first_name')
-                    ->label('First Name')
-                    ->wrap()
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('employee.last_name')
-                    ->label('Last Name')
-                    ->searchable()
-                    ->wrap()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('employee.name')
+                    ->label('Employee Name')
+                    ->searchable(['first_name','last_name'])
+                    ->formatStateUsing(fn (TimeInTimeOutData $record): string => $record->employee->first_name . ' ' . $record->employee->last_name),
                 Tables\Columns\TextColumn::make('employee.department.name')
                     ->label('Department')
                     ->searchable()
@@ -84,7 +78,7 @@ class TimeInTimeOutDataResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->iconButton(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -55,6 +55,7 @@ class Leavefiling extends Component
         $employeeLeaveRequest->end_date = $this->endDate;
         $employeeLeaveRequest->remarks = $this->notes;
         $employeeLeaveRequest->is_approve = false;
+        $employeeLeaveRequest->status = 'For Approval';
         $employeeLeaveRequest->shift = $this->shift;
         $employeeLeaveRequest->save();
 

@@ -15,7 +15,8 @@ class EmployeeLeaveRequest extends Model
         'end_date',
         'remarks',
         'is_approve',
-        'shift'
+        'shift',
+        'status'
     ];
 
     /**
