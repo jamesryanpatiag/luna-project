@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TimeInTimeOutDataResource\Pages;
 use App\Filament\Resources\TimeInTimeOutDataResource\RelationManagers;
+use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use App\Models\TimeInTimeOutData;
 use App\Filament\Exports\TimeInTimeOutDataExporter;
 use Filament\Forms;
@@ -75,7 +76,8 @@ class TimeInTimeOutDataResource extends Resource
                     ->sortable(),
             ])->defaultSort('id', 'desc')
             ->filters([
-                //
+                DateRangeFilter::make('start_time'),
+                DateRangeFilter::make('end_time'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->iconButton(),

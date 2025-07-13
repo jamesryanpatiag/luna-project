@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\EmployeeLeaveRequestResource\Pages;
 use App\Filament\Resources\EmployeeLeaveRequestResource\RelationManagers;
+use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use App\Models\EmployeeLeaveRequest;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms;
@@ -103,7 +104,8 @@ class EmployeeLeaveRequestResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                DateRangeFilter::make('start_date'),
+                DateRangeFilter::make('end_date'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->iconButton(),
