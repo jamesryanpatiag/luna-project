@@ -83,7 +83,7 @@ class AdminPanelProvider extends PanelProvider
                     ->selectable()
                     ->editable()
             )
-            ->favicon(asset('images/Logo-luna.png'))
+            ->favicon(asset('images/favicon.png'))
             ->globalSearchFieldKeyBindingSuffix()
             ->brandLogo(asset('images/Logo-luna.png'))
             ->brandLogoHeight('3.5rem')
