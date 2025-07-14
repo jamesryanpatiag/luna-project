@@ -83,8 +83,7 @@ class Leavefiling extends Component
                         "Leave Type: " . $employeeLeaveRequest->leaveType->name . "\n" 
                 ];           
     
-                // $hook = $employee->department->leave_slack_hook;
-                $hook = 'https://hooks.slack.com/services/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';
+                $hook = $employee->department->leave_slack_hook;
                 $response = Http::post($hook, $data);
             } catch (Exception $e) {
                 Log::info($e);
