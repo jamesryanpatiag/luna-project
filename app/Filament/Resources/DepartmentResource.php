@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Section;
 
 class DepartmentResource extends Resource
 {
@@ -19,19 +20,28 @@ class DepartmentResource extends Resource
 
     protected static ?string $navigationGroup = 'Content';
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-home';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Section::make('Department')
+                ->icon('heroicon-o-home')
+                ->schema([
+                    Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->columnSpan(2),
                 Forms\Components\TextInput::make('slack_hook')
+                    ->label('Time-in/Time-out Slack Hook')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('leave_slack_hook')
+                    ->label('Leave Request Slack Hook')
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
+            ])->columns(2)
             ]);
     }
 

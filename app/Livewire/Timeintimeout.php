@@ -58,7 +58,7 @@ class Timeintimeout extends Component
             $response = Http::post($hook, $data);
 
         } catch (\Exception $e) {
-            //
+            Log::info($e);
         }
 
         session()->flash('message', 'Time-in Success.');

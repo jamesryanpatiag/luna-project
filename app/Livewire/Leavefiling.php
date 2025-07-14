@@ -7,6 +7,9 @@ use App\Models\LeaveType;
 use App\Models\Employee;
 use App\Models\EmployeeLeaveRequest;
 use App\Rules\ValidateIfEmployeeExist;
+use Illuminate\Support\Facades\Http;
+use Exception;
+use Log;
 
 class Leavefiling extends Component
 {
@@ -66,6 +69,27 @@ class Leavefiling extends Component
         $this->endDate = '';
         $this->shift = '';
         $this->notes = '';
+
+        if ($employee->department->leave_slack_hook != null) {
+            try {
+                $data = [
+                    "text" =>
+                        "<!channel> \n" .
+                        "Requestor: *" . $employee->name . "* \n" .
+                        "When: *" . $employeeLeaveRequest->start_date . " to " . $employeeLeaveRequest->end_date . "* \n" .
+                        "Reason: " . $employeeLeaveRequest->remarks . "\n" .
+                        "Status: *" . $employeeLeaveRequest->status . "* \n" . 
+                        "Shift: " . $employeeLeaveRequest->shift . "\n" .
+                        "Leave Type: " . $employeeLeaveRequest->leaveType->name . "\n" 
+                ];           
+    
+                // $hook = $employee->department->leave_slack_hook;
+                $hook = 'https://hooks.slack.com/services/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';
+                $response = Http::post($hook, $data);
+            } catch (Exception $e) {
+                Log::info($e);
+            }
+        }
 
         session()->flash('message', 'Leave filed successfully.');
     }
