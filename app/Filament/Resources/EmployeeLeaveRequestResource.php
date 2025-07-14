@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EmployeeLeaveRequestResource\Pages;
 use App\Filament\Resources\EmployeeLeaveRequestResource\RelationManagers;
 use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
+use App\Filament\Exports\EmployeeLeaveRequestExporter;
 use App\Models\EmployeeLeaveRequest;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms;
@@ -126,6 +127,7 @@ class EmployeeLeaveRequestResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ExportBulkAction::make()->exporter(EmployeeLeaveRequestExporter::class)
                 ]),
             ]);
     }
