@@ -22,7 +22,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('time_out_data_with_checkout_notes', function (Blueprint $table) {
-            //
+            $table->dropColumn([
+                'checkout_notes'
+            ]);
         });
     }
 };
